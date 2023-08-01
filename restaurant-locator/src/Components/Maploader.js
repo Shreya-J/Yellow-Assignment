@@ -3,12 +3,12 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '500px',
+  height: '300px',
+  margin:'25px',
+  padding:'25px',
+  border:'15px black solid'
 };
-
-
-
 
 function Maploader(props) {
   const { isLoaded } = useJsApiLoader({

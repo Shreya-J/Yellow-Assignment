@@ -1,0 +1,13 @@
+.flex-container{
+    margin:auto;
+    width:100%;
+    display:inline;
+}
+.button{
+    background-color: palevioletred;
+    height:90px;
+    width:180px;
+    border: 10px black solid;
+    font-weight: bold;
+    font-size:medium;
+}

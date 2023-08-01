@@ -2,6 +2,8 @@ import React from 'react'
 import axios from "axios"
 import './Home.css'
 import Maploader from './Maploader';
+import History from './History';
+
 
 export default function Home() {
     const geoCode="https://maps.googleapis.com/maps/api/geocode/json?";
@@ -10,6 +12,7 @@ export default function Home() {
     const [latitude,setLatitude]=React.useState('');
     const [longitude,setLongitude]=React.useState("");
     const [place,setPlace]=React.useState("");
+    const [addressH,setAddressH]=React.useState("");
     React.useEffect(()=>{
         navigator.geolocation.getCurrentPosition((position)=>{
             console.log(position.coords);
@@ -24,8 +27,11 @@ export default function Home() {
         .then(res=>
             {
                 console.log(res.data.results); 
+                setAddressH(res.data);
                 
             });
+        
+        console.log(addressH);
         axios.get(`https://cors-anywhere.herokuapp.com/${places}location=${latitude},${longitude}&radius=10000&type=restaurant&key=${API_KEY}`)
         .then(res=>
             {
@@ -39,10 +45,11 @@ export default function Home() {
    //<History/>
   return (
     <div className="flex-container">
-        <p>Find 1000 restaurants close to your current location</p>
-        <button onClick={handleClick} className='button'>Locate Restaurants</button>
-       
+        <button onClick={handleClick} className='button' title="Finds 20 restaurants closest to your location">Locate Restaurants</button>
+       <div>
         <Maploader lat={Number(latitude)} lng={Number(longitude)} places={place}/>
+       </div>
+        
     </div>
   )
 }
